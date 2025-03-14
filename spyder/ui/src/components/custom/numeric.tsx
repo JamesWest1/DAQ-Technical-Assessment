@@ -18,7 +18,9 @@ function Numeric({ temp }: TemperatureProps) {
   // Justify your choice of implementation in brainstorming.md
 
   return (
-    <div className="text-foreground text-4xl font-bold">
+    <div className={`text-foreground text-4xl font-bold ${(20 <= temp && temp <= 25) || (75 <= temp && temp <= 80)? 'text-yellow-500'
+    : 20 < temp && temp < 80 ? 'text-green-500' :
+    'text-red-500'}`}>
       {`${temp}°C`}
     </div>
   );
