@@ -7,7 +7,7 @@ WORKDIR /app
 RUN apt-get update && \
     apt-get install -y python3-pip \
     wget autoconf libtool git make g++ valgrind \
-    cmake can-utils
+    cmake can-utils libxml2 libxml2-dev
 
 COPY . .
 
@@ -17,7 +17,7 @@ RUN cd build/ && rm CMakeCache.txt || true
 
 RUN cd build/ && cmake ..
 
-RUN cd build/ && make -j    
+RUN cd build/ && make -j
 
 # ENTRYPOINT ["./build/solution/answer"]
 ENTRYPOINT ["bash"]

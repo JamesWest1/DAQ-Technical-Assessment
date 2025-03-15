@@ -3,11 +3,32 @@
 This file is used to document your thoughts, approaches and research conducted across all tasks in the Technical Assessment.
 
 ## Firmware
+1.
+I got part 1 working after a long time, most of the processing is handled by dbcppp library, just need to order the bytes properly in the
+uint8_t array that is passed to Decode(). Also in order to get docker to work with dbcppp we need to make sure that it installs libxml2 when it builds
+
+2.
+Low latency (allows multiple signals to be processed at a time, before signals would only be sent once at a time), realy time monitoring and data logging. Allows you to easily integrate new/different componenets (its scalable).
+Reduced weight due to reduced wiring apparently?
+Strong error detection, incorrect data is retransmitted
+
+Maximum speed is limited to 1Mbit/second unless using CAN FD which enables 5 Mbit/second.
+Higher maintance costs potentially
+
+I believe Redback decided to use CAN mainly because of its reliability in data transfer and high speed. It also seems like its easier to integrate new components in CAN as opposed to other systems.
+
+
+I chose this
+https://www.st.com/en/microcontrollers-microprocessors/stm32f777ni.html
+
+Listed as 13 USD on the same website that was linked on the TA, it meets all the requirements and doesn't really go beyond from what I can see. It's 14x14 mm. I chose this one because of its higher maximum temperature which I assume is something that's especially important for electric vehicles.
+
+
 
 ## Spyder
 
 1.
-npm install --save-dev nodemon 
+npm install --save-dev nodemon
 and then change the dockerfile to be CMD["npm", "run", "dev"]
 honestly don't really know why this worked lol I read the nodemon docs and it said that I should change the scripts:dev: value within the package.json to be nodemon -L. But this didn't work, I'm pretty sure that nextjs has its own built in system for rerendering the page when a change is made to the code which nodemon was conflicting with. Pretty sure my current way of doing it doesn't actually use nodemon but it achieves the same thing. Also nodemon was already installed in 'streaming-service' so I didn't have to do anything there.
 

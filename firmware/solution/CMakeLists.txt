@@ -9,6 +9,17 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Executable
 add_executable(answer main.cpp)
 
+include(FetchContent)
+
+FetchContent_Declare(
+    dbcppp
+    GIT_REPOSITORY https://github.com/xR3b0rn/dbcppp.git
+)
+
+FetchContent_MakeAvailable(dbcppp)
+
+target_link_libraries(answer PRIVATE dbcppp)
+
 if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE Release)
 endif()
