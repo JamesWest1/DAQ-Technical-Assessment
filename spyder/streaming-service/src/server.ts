@@ -2,6 +2,8 @@ import { clear, time } from "console";
 import net from "net";
 import { WebSocket, WebSocketServer } from "ws";
 
+import buffer from "buffer"
+
 interface VehicleData {
   battery_temperature: number | string;
   timestamp: number;
@@ -17,7 +19,23 @@ const TIME_THRESHOLD = 5000 // 5000 ms
 let tempQueue:number[] = [] // stores all timestamps that exceed TEMP_THRESHOLD in the last 5 seconds
 
 
-const convertFromLatin1 = (latin1: string) => {
+const convertFromLatin1 = (message: string) => {
+  let arr = message.split('"');
+  let unicode:string = arr[3];
+  let parts = unicode.split('\\u')
+  let curr = 0
+  let result:number = 0; 
+  // for (let value of parts) {
+  //   if (value == '') continue;
+  //     let ind:number = 0
+  //     for (let _ of value) {
+  //       let currentNumber: number = value.charCodeAt(ind);
+  //       console.log(currentNumber)
+  //       ind += 1
+  //     }
+  //   curr += 1
+  // }
+  // console.log(parts)
   return 1;
 }
 
@@ -44,7 +62,7 @@ tcpServer.on("connection", (socket) => {
     const message: string = msg.toString();
     const vd:VehicleData = JSON.parse(message);
     if (typeof vd.battery_temperature === "string") {
-      vd.battery_temperature = convertFromLatin1(vd.battery_temperature);
+      vd.battery_temperature = convertFromLatin1(message);
       return;
     }
     updateTempInfo(vd.battery_temperature, vd.timestamp)

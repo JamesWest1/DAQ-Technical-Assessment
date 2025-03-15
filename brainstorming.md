@@ -30,7 +30,7 @@ Listed as 13 USD on the same website that was linked on the TA, it meets all the
 1.
 npm install --save-dev nodemon
 and then change the dockerfile to be CMD["npm", "run", "dev"]
-honestly don't really know why this worked lol I read the nodemon docs and it said that I should change the scripts:dev: value within the package.json to be nodemon -L. But this didn't work, I'm pretty sure that nextjs has its own built in system for rerendering the page when a change is made to the code which nodemon was conflicting with. Pretty sure my current way of doing it doesn't actually use nodemon but it achieves the same thing. Also nodemon was already installed in 'streaming-service' so I didn't have to do anything there.
+added something in scripts:dev: in the package.json
 
 2.
 Looks like the data is being converted to a different form before its being sent, possibly being converted to a string thats the 
