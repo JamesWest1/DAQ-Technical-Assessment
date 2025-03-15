@@ -90,7 +90,7 @@ int main()
         messages2.insert(std::make_pair(msg.Id(), &msg));
     }
     auto inputStream = std::ifstream{"../dump.log"};
-    auto outputStream = std::ofstream{"../output.txt"};
+    auto outputStream = std::ofstream{"./output.txt"};
     while (inputStream.peek() != EOF)
     {
         can_frame frame;
